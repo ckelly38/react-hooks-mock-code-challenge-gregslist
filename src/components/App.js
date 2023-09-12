@@ -28,7 +28,7 @@ function App() {
     <div className="app">
       {loaded ?
         <>
-          <Header listings={listings} filter={filter} setFilter={setFilter} />
+          <Header filter={filter} setFilter={setFilter} />
           <ListingsContainer listings={listings} filter={filter} />
         </>
        : <p>Loading...</p>}

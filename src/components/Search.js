@@ -1,6 +1,6 @@
 import React from "react";
 
-function Search({listings, filter, setFilter}) {
+function Search({filter, setFilter}) {
   function handleSubmit(e) {
     e.preventDefault();
     console.log("submitted");
