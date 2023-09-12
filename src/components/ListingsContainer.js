@@ -1,14 +1,28 @@
 import React from "react";
 import ListingCard from "./ListingCard";
 
-function ListingsContainer({listings}) {
+function ListingsContainer({listings, filter}) {
   console.log("incontainer: listings = ", listings);
+  console.log("incontainer: filter = " + filter);
 
+  let myfilterlistings = null;
   let mylistingobjs = null;
   if (listings === undefined || listings === null || listings.length < 1);
   else
   {
-    mylistingobjs = listings.map((listing) => 
+    if (filter === undefined || filter === null || filter.length < 1) myfilterlistings = listings;
+    else
+    {
+      myfilterlistings = listings.filter((listing) => {
+        //search by description
+        let myfltrindx = listing.description.indexOf(filter);
+        const indexnotvalid = (myfltrindx < 0 ||
+          (myfltrindx > listing.description.length - 1 && listing.description.length > 0));
+        return (listing.description === filter || !indexnotvalid);
+      });
+    }
+
+    mylistingobjs = myfilterlistings.map((listing) => 
       <ListingCard key={listing.id} listing={listing} image={listing.image} />
     );
   }

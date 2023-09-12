@@ -5,6 +5,7 @@ import ListingsContainer from "./ListingsContainer";
 function App() {
   const [listings, setListings] = useState([]);
   const [loaded, setIsLoaded] = useState(false);
+  const [filter, setFilter] = useState("");
 
   useEffect((() => {
     fetch("http://localhost:6001/listings").then((response) => response.json()).then(function(response)
@@ -21,13 +22,14 @@ function App() {
 
   console.log("listings = ", listings);
   console.log("loaded = " + loaded);
+  console.log("filter = " + filter);
 
   return (
     <div className="app">
       {loaded ?
         <>
-          <Header listings={listings} />
-          <ListingsContainer listings={listings} />
+          <Header listings={listings} filter={filter} setFilter={setFilter} />
+          <ListingsContainer listings={listings} filter={filter} />
         </>
        : <p>Loading...</p>}
     </div>
