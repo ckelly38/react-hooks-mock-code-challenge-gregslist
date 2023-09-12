@@ -30,8 +30,8 @@ function App() {
         "Accept" : "application/json"
       }
     };
-    fetch("http://localhost:6001/listings/" + id, configobj).then((response) => response.json()).
-    then(function(response)
+    fetch("http://localhost:6001/listings/" + id, configobj).then((response) => response.json())
+    .then(function(response)
     {
       console.log("response = ", response);
       console.log("id of listing to remove = " + id);
