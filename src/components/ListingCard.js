@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function ListingCard({listing, image = "https://via.placeholder.com/300x300"}) {
+function ListingCard({listing, delobj, image = "https://via.placeholder.com/300x300"}) {
   const [listingFavoriteObj, setListingFavoriteObj] = useState({
     id: listing.id,
     isFavorite: false
@@ -12,6 +12,11 @@ function ListingCard({listing, image = "https://via.placeholder.com/300x300"}) {
     let nwfavobj = {...listingFavoriteObj};
     nwfavobj.isFavorite = !listingFavoriteObj.isFavorite;
     setListingFavoriteObj(nwfavobj);
+  }
+
+  function handleDelClick(event)
+  {
+    delobj(listing.id);
   }
 
   return (
@@ -28,7 +33,7 @@ function ListingCard({listing, image = "https://via.placeholder.com/300x300"}) {
         )}
         <strong>{listing.description}</strong>
         <span> · {listing.location}</span>
-        <button className="emoji-button delete">🗑</button>
+        <button onClick={handleDelClick} className="emoji-button delete">🗑</button>
       </div>
     </li>
   );

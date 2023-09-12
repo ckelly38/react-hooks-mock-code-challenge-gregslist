@@ -1,7 +1,7 @@
 import React from "react";
 import ListingCard from "./ListingCard";
 
-function ListingsContainer({listings, filter}) {
+function ListingsContainer({listings, filter, delobj}) {
   console.log("incontainer: listings = ", listings);
   console.log("incontainer: filter = " + filter);
 
@@ -23,7 +23,7 @@ function ListingsContainer({listings, filter}) {
     }
 
     mylistingobjs = myfilterlistings.map((listing) => 
-      <ListingCard key={listing.id} listing={listing} image={listing.image} />
+      <ListingCard key={listing.id} listing={listing} delobj={delobj} image={listing.image} />
     );
   }
 
