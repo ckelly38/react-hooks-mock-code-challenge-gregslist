@@ -51,16 +51,51 @@ function App() {
     });
   }
 
+  function compareStrings(a, b)
+  {
+    if (a === undefined || a === null)
+    {
+      if (b === undefined || b === null) return 0;
+      else return 1;
+    }
+    else
+    {
+      if (b === undefined || b === null) return -1;
+      //else;//do nothing
+    }
+
+    if (a < b) return -1;
+    else if (a > b) return 1;
+    else return 0;
+  }
+  function compareLocations(a, b)
+  {
+    if (a === undefined || a === null)
+    {
+      if (b === undefined || b === null) return 0;
+      else return compareStrings(null, b.location);
+    }
+    else
+    {
+      if (b === undefined || b === null) return compareStrings(a.location, null);
+      else return compareStrings(a.location, b.location);
+    }
+  }
+
   console.log("listings = ", listings);
   console.log("loaded = " + loaded);
   console.log("filter = " + filter);
+
+  let srtedlistings = listings.map((listing) => listing);
+  srtedlistings.sort(compareLocations);
+  console.log("srtedlistings = ", srtedlistings);
 
   return (
     <div className="app">
       {loaded ?
         <>
           <Header filter={filter} setFilter={setFilter} />
-          <ListingsContainer listings={listings} filter={filter} delobj={deleteListing} />
+          <ListingsContainer listings={srtedlistings} filter={filter} delobj={deleteListing} />
         </>
        : <p>Loading...</p>}
     </div>
